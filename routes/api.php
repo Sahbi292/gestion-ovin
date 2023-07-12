@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SujetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/post', [PostsController::class, 'index']);
-Route::get('/post/{id}', [PostsController::class, 'show']);
+//Route::get('/sujet', [SujetController::class, 'index']);
+//Route::get('/sujet/{id}', [SujetController::class, 'show']);
 // Route::get('/post/search/{name}', [ProductController::class, 'search']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'authenticate']);
 Route::post('/logout', [AuthController::class, 'logout']);
+
+//Protected Routes
+// Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::post('/sujet', [SujetController::class, 'store']);
+Route::put('/sujet/{id}', [SujetController::class, 'update']);
+Route::delete('/sujet/{id}', [SujetController::class, 'destroy']);
