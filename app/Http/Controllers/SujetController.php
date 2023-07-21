@@ -48,7 +48,7 @@ class SujetController extends Controller
      */
     public function store(Request $request, Sujet  $sujet)
     {
-        $sujet = Sujet::create($request->sujet());
+        $sujet = Sujet::create($request->all());
         return response()->json([
             'message' => 'Sujet Created Successfully!!!',
             'sujet' => $sujet

@@ -6,7 +6,7 @@ import Login from "./components/auth/login.vue";
 import Register from "./components/auth/register.vue";
 
 // import List from "./components/post/list.vue";
-// import Add from "./components/post/add.vue";
+ import Add from "./components/sujet/add.vue";
 // import Edit from "./components/post/edit.vue";
 import Welcome from "./components/Welcome.vue";
 
@@ -16,7 +16,7 @@ createApp({
         Login,
         Register,
         // List,
-        // Add,
+         Add,
         // Edit,
     },
 })

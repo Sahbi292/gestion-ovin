@@ -1,15 +1,20 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import Welcome from "../components/Welcome.vue";
+import Add from "../components/sujet/Add.vue";
 import Login from "../components/auth/login.vue";
 import Register from "../components/auth/register.vue";
 import store from "../store";
-import { add } from "lodash";
 const routes = [
     {
         path: "/",
         name: "home",
         component: Welcome,
+    },
+    {
+        path: "/post",
+        name: "postAdd",
+        component: Add,
     },
    
     {

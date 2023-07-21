@@ -13,10 +13,10 @@ export default function usePosts() {
         posts.value = response.data.posts;
     };
 
-    const createPost = async (data) => {
+    const createSujet = async (data) => {
         try {
-            await axios.post("/api/post", data);
-            await router.push({ name: "postList" });
+            await axios.sujet("/api/sujet", data);
+            await router.push({ name: "sujetList" });
         } catch (e) {
             if (e.response.status === 422) {
                 errors.value = e.response.data.errors;
@@ -93,10 +93,10 @@ export default function usePosts() {
     };
 
     return {
-        posts,
-        post,
+        sujets,
+        sujet,
         getPosts,
-        createPost,
+        createSujet,
         destroyPost,
         getPost,
         UpdatePost,
