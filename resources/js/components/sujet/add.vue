@@ -1,71 +1,100 @@
 <template>
-  <div class="container">
-    <b-container fluid>
 
-      <!-- navbar-1.vue -->
-      <navbar/>
+    <div class="m-auto w-2/3 mt-4">
+        <div class="md:grid md:grid-cols-3 md:gap-6">
+            <div class="md:col-span-1">
+                <div class="px-4 sm:px-0">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Add Sujet</h3>
+                    <p class="mt-1 text-sm text-gray-600">This information will be displayed publicly so be careful what
+                        you share.</p>
+                </div>
+            </div>
+            <div class="mt-5 md:col-span-2 md:mt-0">
+                <form @submit.prevent="storeSujet">
+                    <div class="shadow sm:overflow-hidden sm:rounded-md">
+                        <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+                            <div class="grid grid-cols-3 gap-6">
+                                <div class="col-span-3 sm:col-span-2">
+                                    <div>
 
-      <!-- jumbotron -->
-      <b-jumbotron header="Add New Sujet"></b-jumbotron>
-      <!-- Add New Sujet Form  -->
-      <b-form @submit="onSubmit">
-        <!-- Product Name -->
-        <b-row class="my-1">
-          <b-col sm="3">
-            <label>identifiant:</label>
-          </b-col>
-          <b-col sm="9">
-            <b-form-input type="text" v-model="sujet.identifiant" required placeholder="identifiant"></b-form-input>
-          </b-col>
-        </b-row>
+                                        <input type="text" name="identifiant" id="identifiant"
 
-        <!-- Product Description -->
-        <b-row class="my-1">
-          <b-col sm="3">
-            <label>genre:</label>
-          </b-col>
-          <b-col sm="9">
-            <b-form-input type="text" v-model="sujet.genre" required placeholder="Product Description"></b-form-input>
-          </b-col>
-        </b-row>
+                                            placeholder="sujet identifiant .." v-model="sujet.identifiant" />
+                                    </div>
+                                    <div>
 
-       
+                                        <input type="text" name="genre" id="genre"
 
-        <!-- Action Buttons -->
-        <b-row class="my-1">
-          <b-col sm="9">
-          </b-col>
-          <b-col sm="3">
-            <b-button type="submit" variant="primary">Submit</b-button>
-            <b-button type="reset" variant="secondary" v-on:click="cancel">Reset</b-button>
-          </b-col>
-        </b-row>
-      </b-form>
-    </b-container>
-  </div>
+                                            placeholder="sujet genre .." v-model="sujet.genre" />
+                                    </div>
+                                    <div>
+
+                                        <input type="date" name="date_naissance" id="date_naissance"
+
+                                            placeholder="sujet date_naissance .." v-model="sujet.date_naissance" />
+                                    </div>
+                                    <div>
+
+                                        <input type="number" name="poids" id="poids"
+
+                                            placeholder="sujet poids .." v-model="sujet.poids" />
+                                    </div>
+                                    <div>
+
+                                        <input type="text" name="note" id="note"
+
+                                            placeholder="sujet note .." v-model="sujet.note" />
+                                    </div>
+                                    <div>
+
+                                        <input type="number" name="id_parent" id="id_parent"
+
+                                            placeholder="sujet id_parent .." v-model="sujet.id_parent" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                        </div>
+                        <div >
+                            <button type="submit"
+                               >Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </template>
+
 <script setup>
 
 
 import { reactive } from "vue";
 import usePosts from "../../services/postservices";
-const { ost } = usePosts();
+import store from "../../store";
+
+const { createSujet } = usePosts();
 
 
-const post = reactive({
-    identifiant: "",
-    genre: "",
+const sujet = reactive({
+    "identifiant" : "",
+    "genre" : "",
+    "date_naissance" : "",
+    "poids" : "",
+    "note" : "",
+    "id_parent" : ""
 
 });
 
-const storePost = async () => {
-    await ost({ ...post });
+const storeSujet = async () => {
+
+    await createSujet({ ...sujet });
+    console.log({...sujet});
+
 };
 
 </script>
-
-<style>
-.container {
-  width: 80%;
-}
-</style>

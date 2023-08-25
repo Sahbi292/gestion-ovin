@@ -8,7 +8,10 @@
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
+ <link href ="{{ asset('dist/css/style.css') }}
+ " rel="stylesheet" type="text/css">
+ <link href ="{{ asset('vendors') }}
+ " rel="stylesheet" type="text/css">
         <!-- Styles -->
        @vite('resources/css/app.css')
 

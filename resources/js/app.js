@@ -1,13 +1,16 @@
 import "./bootstrap";
 
+
+
+
 import { createApp } from "vue";
 import router from "./router";
 import Login from "./components/auth/login.vue";
 import Register from "./components/auth/register.vue";
 
-// import List from "./components/post/list.vue";
- import Add from "./components/sujet/add.vue";
-// import Edit from "./components/post/edit.vue";
+ import List from "./components/sujet/List.vue";
+import Add from "./components/sujet/add.vue";
+ import Edit from "./components/sujet/Edit.vue";
 import Welcome from "./components/Welcome.vue";
 
 createApp({
@@ -15,9 +18,9 @@ createApp({
         Welcome,
         Login,
         Register,
-        // List,
-         Add,
-        // Edit,
+        Add,
+         List,
+          Edit,
     },
 })
     .use(router)

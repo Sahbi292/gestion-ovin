@@ -4,19 +4,21 @@ import router from "../router";
 import store from "../store";
 
 export default function usePosts() {
-    const posts = ref([]);
-    const post = ref([]);
+    const sujets = ref([]);
+    const sujet = ref([]);
     const errors = ref("");
 
-    const getPosts = async () => {
-        let response = await axios.get("/api/post");
-        posts.value = response.data.posts;
+    const getSujets = async () => {
+        let response = await axios.get("/api/list");
+        console.log('hereeeeeeeeeeeeeeeeee');
+        console.log({response});
+        sujets.value = response.data.sujets;
     };
 
     const createSujet = async (data) => {
         try {
-            await axios.sujet("/api/sujet", data);
-            await router.push({ name: "sujetList" });
+            await axios.post("/api/sujet", data);
+            await router.push({ name: "home" });
         } catch (e) {
             if (e.response.status === 422) {
                 errors.value = e.response.data.errors;
@@ -24,22 +26,22 @@ export default function usePosts() {
         }
     };
 
-    const destroyPost = async (id) => {
+    const destroySujet = async (id) => {
         if (!window.confirm("Are u sure !")) return;
-        await axios.delete("/api/post/" + id);
-        await getPosts();
+        await axios.delete("/api/sujet/" + id);
+        await getSujets();
     };
-    const getPost = async (id) => {
-        let response = await axios.get("/api/post/" + id);
-        post.value = response.data.data;
-        console.log("edit post", post.value);
+    const getSujet = async () => {
+        let response = await axios.get("/api/sujet/" );
+        sujet.value = response.data.data;
+        console.log("edit sujet", sujet.value);
     };
 
-    const UpdatePost = async (id) => {
+    const UpdateSujet = async (id) => {
         errors.value = "";
         try {
-            await axios.put("/api/post/" + id, post.value);
-            await router.push({ name: "postList" });
+            await axios.put("/api/sujet/" + id, sujet.value);
+            await router.push({ name: "sujetList" });
         } catch (e) {
             if (e.response.status === 422) {
                 errors.value = e.response.data.errors;
@@ -58,7 +60,7 @@ export default function usePosts() {
                 if (res.data) {
                     localStorage.setItem("user", JSON.stringify(res.data));
                 }
-                router.push({ name: "postList" });
+                router.push({ name: "home" });
                 console.log(store.state.user.token);
             })
             .catch((e) => {
@@ -73,7 +75,7 @@ export default function usePosts() {
             .post("api/register", data)
             .then((res) => {
                 store.state.user.token = res.data.token;
-                router.push({ name: "postList" });
+                router.push({ name: "sujetList" });
 
                 console.log(store.state.user.token);
             })
@@ -95,11 +97,11 @@ export default function usePosts() {
     return {
         sujets,
         sujet,
-        getPosts,
+        getSujets,
         createSujet,
-        destroyPost,
-        getPost,
-        UpdatePost,
+        destroySujet,
+        getSujet,
+        UpdateSujet,
         signin,
         signup,
         logout,

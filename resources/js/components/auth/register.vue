@@ -1,72 +1,79 @@
-
 <template>
-    <!--
-      This example requires updating your template:
+    <!-- HK Wrapper -->
+	<div class="hk-wrapper">
 
-      ```
-      <html class="h-full bg-gray-50">
-      <body class="h-full">
-      ```
-    -->
-    <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div class="w-full max-w-md space-y-8">
-         
-            <form class="mt-8 space-y-6" @submit.prevent="register">
-                <input type="hidden" name="remember" value="true" />
-                <div class="-space-y-px rounded-md shadow-sm">
-                    <div>
-                        <label for="name" class="sr-only">Name</label>
-                        <input name="name" type="text" autocomplete="name" required="" v-model="data.name"
-                            class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                            placeholder="Name" />
-                    </div>
-                    <div>
-                        <label for="email-address" class="sr-only">Email address</label>
-                        <input name="email" type="email" autocomplete="email" required="" v-model="data.email"
-                            class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                            placeholder="Email address" />
-                    </div>
-                    <div>
-                        <label for="password" class="sr-only">Password</label>
-                        <input name="password" type="password" autocomplete="current-password" required=""
-                            v-model="data.password"
-                            class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                            placeholder="Password" />
-                    </div>
-                    <div>
-                        <label for="password_confirmation" class="sr-only">Confirmation Password</label>
-                        <input name="password_confirmation" type="password" autocomplete="password_confirmation"
-                            required="" v-model="data.password_confirmation"
-                            class="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                            placeholder="Confirmation Password" />
+<!-- Main Content -->
+<div class="hk-pg-wrapper hk-auth-wrapper">
+    <header class="d-flex justify-content-between align-items-center">
+        <a class="d-flex font-24 font-weight-500 auth-brand" href="#">
+            Ovins
+        </a>
+        <div class="btn-group btn-group-sm">
+            <a href="#" class="btn btn-outline-secondary">Help</a>
+            <a href="#" class="btn btn-outline-secondary">About Us</a>
+        </div>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-5 pa-0">
+                <div class="auth-cover-img overlay-wrap" style="background-image:url(dist/img/bg-1.jpg);">
+                   
+                </div>
+            </div>
+            <div class="col-xl-7 pa-0">
+                <div class="auth-form-wrap py-xl-0 py-50">
+                    <div class="auth-form w-xxl-55 w-xl-75 w-sm-90 w-100">
+                        <form @submit.prevent="register()">
+                            <h1 class="display-5 mb-10">Sign up </h1>
+                            <p class="mb-30">Create  account </p>
+                            <div class="form-row">
+                                <div class="col-md-6 form-group">
+                                    <input class="form-control" placeholder="First name" name="name" type="text" v-model="data.name" >
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <input class="form-control" placeholder="Last name" value="" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Email" type="email" v-model="data.email" >
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Password" type="password" v-model="data.password" >
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="Confirm Password" type="password">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><span class="feather-icon"><i data-feather="eye-off"></i></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-25">
+                                <input class="custom-control-input" id="same-address" type="checkbox" checked>
+                                <label class="custom-control-label font-14" for="same-address">I have read and agree to the <a href=""><u>term and conditions</u></a></label>
+                            </div>
+                            <button class="btn btn-danger btn-block" type="submit">Register</button>
+                            <div class="option-sep">or</div>
+                            <div class="form-row">
+                                <div class="col-sm-6 mb-20">
+                                    <button class="btn btn-indigo btn-block btn-wth-icon"> <span class="icon-label"><i class="fa fa-facebook"></i> </span><span class="btn-text">Login with facebook</span></button>
+                                </div>
+                                <div class="col-sm-6 mb-20">
+                                    <button class="btn btn-sky btn-block btn-wth-icon"> <span class="icon-label"><i class="fa fa-twitter"></i> </span><span class="btn-text">Login with Twitter</span></button>
+                                </div>
+                            </div>
+                            <p class="text-center">Already have an account? <a href="login.html">Sign In</a></p>
+                        </form>
                     </div>
                 </div>
-
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <input id="remember-me" name="remember-me" type="checkbox"
-                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-                        <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
-                    </div>
-
-                    <div class="text-sm">
-                        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</a>
-                    </div>
-                </div>
-
-                <div>
-                    <button type="submit"
-                        class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                            <LockClosedIcon class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                                aria-hidden="true" />
-                        </span>
-                        Sign up
-                    </button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
+</div>
+<!-- /Main Content -->
+
+</div>
+<!-- /HK Wrapper -->
 </template>
 
 <script setup>

@@ -16,8 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/sujet', [SujetController::class, 'index']);
-//Route::get('/sujet/{id}', [SujetController::class, 'show']);
+
 // Route::get('/post/search/{name}', [ProductController::class, 'search']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'authenticate']);
@@ -25,6 +24,8 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 //Protected Routes
 // Route::group(['middleware' => ['auth:sanctum']], function () {
+ Route::get('/list', [SujetController::class, 'index']);
+Route::get('/sujet/{identifiant}', [SujetController::class, 'show']);
 Route::post('/sujet', [SujetController::class, 'store']);
 Route::put('/sujet/{id}', [SujetController::class, 'update']);
 Route::delete('/sujet/{id}', [SujetController::class, 'destroy']);
