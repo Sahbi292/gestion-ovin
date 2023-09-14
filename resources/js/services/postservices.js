@@ -15,6 +15,13 @@ export default function usePosts() {
         sujets.value = response.data.sujets;
     };
 
+    
+    const destroySujet = async (id) => {
+        if (!window.confirm("Are u sure !")) return;
+        await axios.delete("/api/sujet/" + id);
+        await getSujets();
+    };
+
     const createSujet = async (data) => {
         try {
             await axios.post("/api/sujet", data);
@@ -26,29 +33,24 @@ export default function usePosts() {
         }
     };
 
-    const destroySujet = async (id) => {
-        if (!window.confirm("Are u sure !")) return;
-        await axios.delete("/api/sujet/" + id);
-        await getSujets();
-    };
-    const getSujet = async () => {
-        let response = await axios.get("/api/sujet/" );
-        sujet.value = response.data.data;
-        console.log("edit sujet", sujet.value);
-    };
+    // const getSujet = async () => {
+    //     let response = await axios.get("/api/sujet/" );
+    //     sujet.value = response.data.data;
+    //     console.log("edit sujet", sujet.value);
+    // };
 
-    const UpdateSujet = async (id) => {
-        errors.value = "";
-        try {
-            await axios.put("/api/sujet/" + id, sujet.value);
-            await router.push({ name: "sujetList" });
-        } catch (e) {
-            if (e.response.status === 422) {
-                errors.value = e.response.data.errors;
-                console.log(e.response.data.errors);
-            }
-        }
-    };
+    // const UpdateSujet = async (id) => {
+    //     errors.value = "";
+    //     try {
+    //         await axios.put("/api/sujet/" + id, sujet.value);
+    //         await router.push({ name: "sujetList" });
+    //     } catch (e) {
+    //         if (e.response.status === 422) {
+    //             errors.value = e.response.data.errors;
+    //             console.log(e.response.data.errors);
+    //         }
+    //     }
+    // };
 
     const signin = async (data) => {
         axios

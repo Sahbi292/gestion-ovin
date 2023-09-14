@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Resources\SujetResource;
+use App\Models\Lot;
 use App\Models\Sujet;
 use Illuminate\Http\Response;
 
@@ -15,7 +16,7 @@ class SujetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexsujet()
     {
         // $sujets = Sujet::all(['identifiant', 'genre', 'date_naissance', 'poids', 'note', 'id_parent']);
         // return response()->json($sujets);
@@ -46,9 +47,13 @@ class SujetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Sujet  $sujet)
+    public function storesujet(Request $request)
     {
-        $sujet = Sujet::create($request->all());
+        $lot = Lot::find($request->lot_id);
+        $sujet = new Sujet();
+        $sujet->fill($request->all());
+        $lot->sujet()->save($sujet);
+        
         return response()->json([
             'message' => 'Sujet Created Successfully!!!',
             'sujet' => $sujet
@@ -88,13 +93,16 @@ class SujetController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Sujet  $sujet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sujet $sujet)
+    public function updatesujet(Request $request,  $id)
     {
-        $sujet->fill($request->sujet())->save();
+        $sujet=Sujet::find($id);
+    //  dd($race);
+        $sujet->update($request->all());
         return response()->json([
             'message' => 'sujet Updated Successfully!!!',
             'sujet' => $sujet
@@ -107,15 +115,19 @@ class SujetController extends Controller
      * @param  \App\Models\Sujet  $sujet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sujet $sujet, $id): Response
+    public function destroysujet(Sujet $sujet, $id)
     {
+        $sujetToDelete = $sujet->find($id);
 
-        $sujet->find($id)->delete();
-        return response()->noContent();
-
-        // $sujet->delete();
-        // return response()->json([
-        //     'message' => 'Sujet Deleted Successfully!!!'
-        // ]);
+        if ($sujetToDelete) {
+            $sujetToDelete->delete();
+            return response()->json([
+                'message' => 'Sujet Deleted Successfully!!!'
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Sujet not found!'
+            ], 404);
+        }
     }
 }

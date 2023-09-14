@@ -11,63 +11,36 @@
             </div>
             <div class="mt-5 md:col-span-2 md:mt-0">
                 <form @submit.prevent="storeSujet">
-                    <div class="shadow sm:overflow-hidden sm:rounded-md">
-                        <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
-                            <div class="grid grid-cols-3 gap-6">
-                                <div class="col-span-3 sm:col-span-2">
-                                    <div>
+            <label for="matricule">Matricule:</label>
+            <input type="text" id="matricule" v-model="nouvelAnimal.matricule" required>
 
-                                        <input type="text" name="identifiant" id="identifiant"
+            <label for="genre">Genre:</label>
+            <input type="text" id="genre" v-model="nouvelAnimal.genre" required>
 
-                                            placeholder="sujet identifiant .." v-model="sujet.identifiant" />
-                                    </div>
-                                    <div>
+            <label for="dateNaissance">Date de Naissance:</label>
+            <input type="date" id="dateNaissance" v-model="nouvelAnimal.dateNaissance" required>
 
-                                        <input type="text" name="genre" id="genre"
+            <label for="race">Race:</label>
+            <input type="text" id="race" v-model="nouvelAnimal.race" required>
 
-                                            placeholder="sujet genre .." v-model="sujet.genre" />
-                                    </div>
-                                    <div>
+            <label for="poids">Poids:</label>
+            <input type="text" id="poids" v-model="nouvelAnimal.poids" required>
 
-                                        <input type="date" name="date_naissance" id="date_naissance"
+            <label for="note">Note:</label>
+            <textarea id="note" v-model="nouvelAnimal.note"></textarea>
 
-                                            placeholder="sujet date_naissance .." v-model="sujet.date_naissance" />
-                                    </div>
-                                    <div>
+            <label for="lotId">Lot ID:</label>
+            <input type="number" id="lotId" v-model="nouvelAnimal.lotId" required>
 
-                                        <input type="number" name="poids" id="poids"
+            <label for="matriculeParent">Matricule Parent:</label>
+            <input type="text" id="matriculeParent" v-model="nouvelAnimal.matriculeParent">
 
-                                            placeholder="sujet poids .." v-model="sujet.poids" />
-                                    </div>
-                                    <div>
-
-                                        <input type="text" name="note" id="note"
-
-                                            placeholder="sujet note .." v-model="sujet.note" />
-                                    </div>
-                                    <div>
-
-                                        <input type="number" name="id_parent" id="id_parent"
-
-                                            placeholder="sujet id_parent .." v-model="sujet.id_parent" />
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-
-                        </div>
-                        <div >
-                            <button type="submit"
-                               >Save</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+            <button type="submit">Ajouter</button>
+        </form>
+    </div>
         </div>
     </div>
+
 </template>
 
 <script setup>
@@ -81,12 +54,13 @@ const { createSujet } = usePosts();
 
 
 const sujet = reactive({
-    "identifiant" : "",
+    "matricule" : "",
     "genre" : "",
     "date_naissance" : "",
+    "race" : "",
     "poids" : "",
     "note" : "",
-    "id_parent" : ""
+    "matricule_parent" : ""
 
 });
 

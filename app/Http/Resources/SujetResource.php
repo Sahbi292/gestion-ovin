@@ -16,6 +16,6 @@ class SujetResource extends JsonResource
     public function toArray(Request $request)
     {
         return
-        [ 'identifiant' =>$this->identifiant, 'genre' => $this->genre, 'date-naissance' => $this->date_naissance, 'poids' =>$this->poids, 'note'=>$this->note, 'id_parent'=>$this->id_parent,  ];
+        [ 'matricule' =>$this->matricule, 'genre' => $this->genre, 'date-naissance' => $this->date_naissance,'race'=>$this->race_id, 'poids' =>$this->poids, 'note'=>$this->note, 'matricule_parent'=>$this->matricule_parent,  ];
     }
 }

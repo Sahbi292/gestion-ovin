@@ -11,16 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sujets', function (Blueprint $table) {
-            $table->integer('identifiant');
-            $table->string('genre');
-        
-            $table->date('date_naissance');
-            
-            $table->integer('poids');
-            $table->string('note');
-            $table->string('id_parent');
-            
+        Schema::create('lots', function (Blueprint $table) {
+            $table->id();
+            $table->string('nom_lot');
             $table->timestamps();
         });
     }
@@ -30,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sujets');
+        Schema::dropIfExists('lots');
     }
 };
